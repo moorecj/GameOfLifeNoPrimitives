@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using TheGameOfLifeNoPrimitivesKata;
+using GameOfLifeCells;
 
 
 namespace GameOfLifeNoPrimitivesTests
@@ -20,5 +21,23 @@ namespace GameOfLifeNoPrimitivesTests
 
             Assert.That( game.GetGame(), Is.Null);
         }
+    
+        [Test]
+        public void ALoneLiveCell_ResultsInNoCellsAfterOneTick()
+        {
+            List<Cell>initialCellConfig = new List<Cell>();
+
+            initialCellConfig.Add(new Cell());
+
+            GameOfLifeNoPrimitives game = new GameOfLifeNoPrimitives( initialCellConfig );
+
+            game.Tick();
+
+            Assert.That(game.GetGame(), Is.Null);
+        }
+
     }
+
+
+
 }
