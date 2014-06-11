@@ -8,5 +8,24 @@ namespace GameOfLifeCells
 {
     public class Cell
     {
+        private Cell thisCell;
+        private List<Cell> neighbors;
+
+        public Cell()
+        {
+            neighbors = new List<Cell>();
+
+        }
+
+        public List<Cell> GetNeighbors()
+        {
+            return neighbors;
+        }
+
+        
+
+       
+
+        
     }
 }
