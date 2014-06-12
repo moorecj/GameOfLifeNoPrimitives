@@ -77,6 +77,10 @@ namespace TheGameOfLifeNoPrimitivesKata
                 {
                     c.FlagToBecomeDead();
                 }
+                else if (neighbor3 != null)
+                {
+                    c.FlagToBecomeAlive();
+                }
                 
 
             }
