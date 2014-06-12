@@ -77,6 +77,7 @@ namespace TheGameOfLifeNoPrimitivesKata
                 {
                     c.FlagToBecomeDead();
                 }
+                
 
             }
 
