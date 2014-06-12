@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameOfLifeCells;
 using TheGameOfLifeNoPrimitivesKata.Extensions;
+
 namespace TheGameOfLifeNoPrimitivesKata
 {
     [Serializable]
@@ -12,9 +13,9 @@ namespace TheGameOfLifeNoPrimitivesKata
     {
         private List<Cell> Gamecells;
 
-        public GameOfLifeNoPrimitives(List<Cell> initialGrid)
+        public GameOfLifeNoPrimitives( List<Cell> initialGrid )
         {
-            Gamecells = initialGrid.DeepClone() ;
+            Gamecells = initialGrid.DeepClone();
         }
 
         public GameOfLifeNoPrimitives()
@@ -36,11 +37,8 @@ namespace TheGameOfLifeNoPrimitivesKata
                 neighbors = c.GetNeighbors();
 
                 Cell neighbor1 = null;
-
                 Cell neighbor2 = null;
-
                 Cell neighbor3 = null;
-
                 Cell neighbor4 = null;
 
 
@@ -72,16 +70,23 @@ namespace TheGameOfLifeNoPrimitivesKata
 
                 if( neighbor2 == null )
                 {
-                    c.SetDead(); 
+                    c.FlagToBecomeDead(); 
                 }
 
                 if(neighbor4 != null )
                 {
-                    c.SetDead();
+                    c.FlagToBecomeDead();
                 }
 
-
             }
+
+            UpdateAllCells();
+
+        }
+
+
+        public void UpdateAllCells()
+        {
 
             foreach (Cell c in Gamecells)
             {
@@ -90,9 +95,8 @@ namespace TheGameOfLifeNoPrimitivesKata
 
         }
 
-
-
-        
     }
     
 }
+
+

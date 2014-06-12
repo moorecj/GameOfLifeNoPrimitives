@@ -38,11 +38,26 @@ namespace GameOfLifeCells
         public void SetAlive( )
         {
 
+            thisCellsState = new Cell();
+            thisCellsNextState = new Cell();
+        }
+
+        public void SetDead( )
+        {
+
+            thisCellsState = null;
+            thisCellsNextState = null;
+
+        }
+
+        public void FlagToBecomeAlive()
+        {
+
             thisCellsNextState = new Cell();
 
         }
 
-        public void SetDead( )
+        public void FlagToBecomeDead()
         {
 
             thisCellsNextState = null;

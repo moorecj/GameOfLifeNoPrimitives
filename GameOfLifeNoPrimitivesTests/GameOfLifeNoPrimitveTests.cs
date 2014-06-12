@@ -115,11 +115,6 @@ namespace GameOfLifeNoPrimitivesTests
             initialCellConfig[6].SetDead();
             initialCellConfig[7].SetDead();
             initialCellConfig[8].SetDead();
-
-            foreach( Cell c in initialCellConfig )
-            {
-                c.Update();
-            }
             
 
             GameOfLifeNoPrimitives game = new GameOfLifeNoPrimitives(initialCellConfig);
@@ -206,11 +201,6 @@ namespace GameOfLifeNoPrimitivesTests
             initialCellConfig[7].SetDead();
             initialCellConfig[8].SetDead();
 
-            foreach (Cell c in initialCellConfig)
-            {
-                c.Update();
-            }
-
 
             GameOfLifeNoPrimitives game = new GameOfLifeNoPrimitives(initialCellConfig);
 
@@ -219,6 +209,96 @@ namespace GameOfLifeNoPrimitivesTests
 
             Assert.That(game.GetGame()[1].GetThisCellsState(), Is.Null);
             Assert.That(game.GetGame()[4].GetThisCellsState(), Is.Null);
+
+
+        }
+
+        [Test]
+        public void ADeadCellWithExactlyThreeNeighbors_ResultsInALivingCellAfterOneTick()
+        {
+
+            List<Cell> initialCellConfig = new List<Cell>();
+
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+            initialCellConfig.Add(new Cell());
+
+            //build the web of neighbors
+            initialCellConfig[0].GetNeighbors().Add(initialCellConfig[1]);
+            initialCellConfig[0].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[0].GetNeighbors().Add(initialCellConfig[5]);
+
+            initialCellConfig[1].GetNeighbors().Add(initialCellConfig[0]);
+            initialCellConfig[1].GetNeighbors().Add(initialCellConfig[2]);
+            initialCellConfig[1].GetNeighbors().Add(initialCellConfig[3]);
+            initialCellConfig[1].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[1].GetNeighbors().Add(initialCellConfig[5]);
+
+            initialCellConfig[2].GetNeighbors().Add(initialCellConfig[1]);
+            initialCellConfig[2].GetNeighbors().Add(initialCellConfig[3]);
+            initialCellConfig[2].GetNeighbors().Add(initialCellConfig[4]);
+
+            initialCellConfig[3].GetNeighbors().Add(initialCellConfig[1]);
+            initialCellConfig[3].GetNeighbors().Add(initialCellConfig[2]);
+            initialCellConfig[3].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[3].GetNeighbors().Add(initialCellConfig[7]);
+            initialCellConfig[3].GetNeighbors().Add(initialCellConfig[8]);
+
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[0]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[1]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[2]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[3]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[5]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[6]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[7]);
+            initialCellConfig[4].GetNeighbors().Add(initialCellConfig[8]);
+
+            initialCellConfig[5].GetNeighbors().Add(initialCellConfig[0]);
+            initialCellConfig[5].GetNeighbors().Add(initialCellConfig[1]);
+            initialCellConfig[5].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[5].GetNeighbors().Add(initialCellConfig[6]);
+            initialCellConfig[5].GetNeighbors().Add(initialCellConfig[7]);
+
+            initialCellConfig[6].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[6].GetNeighbors().Add(initialCellConfig[5]);
+            initialCellConfig[6].GetNeighbors().Add(initialCellConfig[7]);
+
+            initialCellConfig[7].GetNeighbors().Add(initialCellConfig[3]);
+            initialCellConfig[7].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[7].GetNeighbors().Add(initialCellConfig[5]);
+            initialCellConfig[7].GetNeighbors().Add(initialCellConfig[6]);
+            initialCellConfig[7].GetNeighbors().Add(initialCellConfig[8]);
+
+            initialCellConfig[8].GetNeighbors().Add(initialCellConfig[3]);
+            initialCellConfig[8].GetNeighbors().Add(initialCellConfig[4]);
+            initialCellConfig[8].GetNeighbors().Add(initialCellConfig[7]);
+
+            initialCellConfig[0].SetAlive();
+            initialCellConfig[1].SetAlive();
+            initialCellConfig[2].SetAlive();
+            initialCellConfig[3].SetAlive();
+            initialCellConfig[4].SetAlive();
+            initialCellConfig[5].SetDead();
+            initialCellConfig[6].SetDead();
+            initialCellConfig[7].SetDead();
+            initialCellConfig[8].SetDead();
+
+
+            GameOfLifeNoPrimitives game = new GameOfLifeNoPrimitives(initialCellConfig);
+
+            Assert.That(game.GetGame()[5].GetThisCellsState(), Is.Null);
+
+            game.Tick();
+
+
+            Assert.That(game.GetGame()[5].GetThisCellsState(), Is.Not.Null);
+
 
 
         }
