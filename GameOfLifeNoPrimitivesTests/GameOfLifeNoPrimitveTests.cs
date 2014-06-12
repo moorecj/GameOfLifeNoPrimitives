@@ -29,7 +29,6 @@ namespace GameOfLifeNoPrimitivesTests
 
             initialCellConfig.Add(new Cell());
             initialCellConfig[0].SetAlive();
-            initialCellConfig[0].Update();
 
             GameOfLifeNoPrimitives game = new GameOfLifeNoPrimitives( initialCellConfig );
 
@@ -295,7 +294,6 @@ namespace GameOfLifeNoPrimitivesTests
             Assert.That(game.GetGame()[5].GetThisCellsState(), Is.Null);
 
             game.Tick();
-
 
             Assert.That(game.GetGame()[5].GetThisCellsState(), Is.Not.Null);
 
