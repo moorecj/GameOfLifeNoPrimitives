@@ -14,7 +14,7 @@ namespace TheGameOfLifeNoPrimitivesKata
 
         public GameOfLifeNoPrimitives(List<Cell> initialGrid)
         {
-            Gamecells = initialGrid;
+            Gamecells = initialGrid.DeepClone() ;
         }
 
         public GameOfLifeNoPrimitives()
@@ -73,6 +73,11 @@ namespace TheGameOfLifeNoPrimitivesKata
                 if( neighbor2 == null )
                 {
                     c.SetDead(); 
+                }
+
+                if(neighbor4 != null )
+                {
+                    c.SetDead();
                 }
 
 

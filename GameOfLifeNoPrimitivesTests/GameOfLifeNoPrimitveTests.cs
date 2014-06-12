@@ -56,6 +56,7 @@ namespace GameOfLifeNoPrimitivesTests
             initialCellConfig.Add(new Cell());
             initialCellConfig.Add(new Cell());
 
+            //build the web of neighbors
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[1]);
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[4]);
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[5]);
@@ -145,6 +146,7 @@ namespace GameOfLifeNoPrimitivesTests
             initialCellConfig.Add(new Cell());
             initialCellConfig.Add(new Cell());
 
+            //build the web of neighbors
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[1]);
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[4]);
             initialCellConfig[0].GetNeighbors().Add(initialCellConfig[5]);
