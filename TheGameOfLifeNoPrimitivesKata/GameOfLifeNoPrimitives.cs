@@ -10,30 +10,30 @@ namespace TheGameOfLifeNoPrimitivesKata
     [Serializable]
     public class GameOfLifeNoPrimitives
     {
-        private List<Cell> cells;
+        private List<Cell> Gamecells;
 
         public GameOfLifeNoPrimitives(List<Cell> initialGrid)
         {
-            cells = initialGrid.DeepClone();
+            Gamecells = initialGrid;
         }
 
         public GameOfLifeNoPrimitives()
         {
-            cells = null;
+            Gamecells = null;
         }
         
         public List<Cell> GetGame()
         {
-            return (cells);
+            return (Gamecells);
         }
 
         public void Tick()
         {
-            foreach(Cell c in cells)
+            foreach(Cell c in Gamecells)
             {
                 List<Cell> neighbors;
 
-                neighbors = c.GetNeighbors().DeepClone();
+                neighbors = c.GetNeighbors();
 
                 Cell neighbor1 = null;
 
@@ -43,9 +43,11 @@ namespace TheGameOfLifeNoPrimitivesKata
 
                 Cell neighbor4 = null;
 
+
                 foreach( Cell n in neighbors)
                 {
-                    if( n != null)
+
+                    if( n.GetThisCellsState() != null)
                     {
                         if(neighbor1 == null)
                         {
@@ -70,12 +72,16 @@ namespace TheGameOfLifeNoPrimitivesKata
 
                 if( neighbor2 == null )
                 {
-                             
+                    c.SetDead(); 
                 }
+
+
             }
 
-          
-            
+            foreach (Cell c in Gamecells)
+            {
+                c.Update();
+            }
 
         }
 

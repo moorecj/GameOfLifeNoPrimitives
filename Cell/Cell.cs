@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace GameOfLifeCells
 {
+    [Serializable]
     public class Cell
     {
-        private Cell thisCell;
+        private Cell thisCellsState;
+        private Cell thisCellsNextState;
+
         private List<Cell> neighbors;
+
 
         public Cell()
         {
             neighbors = new List<Cell>();
-
         }
 
         public List<Cell> GetNeighbors()
@@ -22,10 +25,29 @@ namespace GameOfLifeCells
             return neighbors;
         }
 
-        
+        public Cell GetThisCellsState()
+        {
+            return thisCellsState;
+        }
 
-       
+        public void Update( )
+        {
+            thisCellsState = thisCellsNextState;
+        }
 
+        public void SetAlive( )
+        {
+
+            thisCellsNextState = new Cell();
+
+        }
+
+        public void SetDead( )
+        {
+
+            thisCellsNextState = null;
+
+        }
         
     }
 }
